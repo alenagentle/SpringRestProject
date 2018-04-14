@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Резюме</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
+
+    <script th:src="@{/main.js}"></script>
+    <link th:href="@{/main.css}" rel="stylesheet" />
+</head>
+
+<body ng-app="PersonManagement" ng-controller="PersonController">
+<h3>
+    Резюме:
+</h3>
+
+<form ng-submit="submitPerson()">
+    <table border="0">
+        <tr>
+            <td>id</td>
+            <td>{{personDto.id}}</td>
+        </tr>
+        <tr>
+            <td>ФИО:</td>
+            <td><input type="text" ng-model="personDto.fio" /></td>
+        </tr>
+        <tr>
+            <td>Возраст:</td>
+            <td><input type="text" ng-model="personDto.age"  /></td>
+        </tr>
+        <tr>
+            <td>e-mail:</td>
+            <td><input type="text" ng-model="personDto.email"  /></td>
+        </tr>
+        <tr>
+            <td>skype:</td>
+            <td><input type="text" ng-model="personDto.skype"  /></td>
+        </tr>
+        <tr>
+            <td>Цель:</td>
+            <td><input type="text" ng-model="personDto.target"  /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Принять" class="blue-button" />
+            </td>
+        </tr>
+    </table>
+</form>
+<br/>
+
+<button type="button" ng-click="isshow=!isshow">Поменять формат списка</button>
+<br/>
+<br/>
+
+<table border="1" ng-show="!isshow">
+    <tr>
+        <th>id</th>
+        <th>ФИО</th>
+        <th>Возраст</th>
+        <th>e-mail</th>
+        <th>skype</th>
+        <th>Цель</th>
+        <th class="edit-button">Изменить</th>
+        <th class="delete-button">Удалить</th>
+    </tr>
+    <!-- $scope.persons -->
+    <tr ng-repeat="person in persons">
+        <td> {{ person.id }}</td>
+        <td> {{ person.fio }}</td>
+        <td >{{ person.age }}</td>
+        <td> {{ person.email }}</td>
+        <td> {{ person.skype }}</td>
+        <td >{{ person.target }}</td>
+        <td>
+            <a ng-click="editPerson(person)" class="edit-button">Изменить</a>
+        </td>
+        <td>
+            <a ng-click="deletePerson(person)" class="delete-button">Удалить</a>
+        </td>
+    </tr>
+</table>
+
+
+
+<table border="1" ng-show="isshow">
+    <tr>
+        <th>ФИО</th>
+        <th>Цель</th>
+        <th class="edit-button">Изменить</th>
+        <th class="delete-button">Удалить</th>
+    </tr>
+    <!-- $scope.persons -->
+    <tr ng-repeat="person in persons">
+        <td> {{ person.fio }}</td>
+        <td >{{ person.target }}</td>
+        <td>
+            <a ng-click="editPerson(person)" class="edit-button">Изменить</a>
+        </td>
+        <td>
+            <a ng-click="deletePerson(person)" class="delete-button">Удалить</a>
+        </td>
+    </tr>
+</table>
+
+
+</body>
+</html>
